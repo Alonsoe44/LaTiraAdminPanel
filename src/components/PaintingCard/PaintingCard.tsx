@@ -1,5 +1,7 @@
 import request, { gql } from "graphql-request";
 import PaintingInterface from "../../interfaces/PaintingInterface";
+import { useAppDispatch } from "../../reduxToolkit/hooks";
+import { getPaintingsThunk } from "../../reduxToolkit/paintingsThunks";
 import SimpleButton from "./SimpleButton";
 import SimpletLink from "./SimpletLink";
 
@@ -18,28 +20,31 @@ interface PaintingCardProps {
 }
 
 function PaintingCard({ painting }: PaintingCardProps) {
+  const dispatch = useAppDispatch();
   return (
-    <div className="flex flex-col  max-w-sm rounded-lg shadow m-7 ">
-      <img
-        alt={painting.title}
-        className="w-max h-[20rem] self-center"
-        src={painting.imageUrl}
-      />
+    <div className="flex flex-col bg-slate-50 max-w-sm rounded-lg shadow m-7 ">
+      <div className="h-[20rem] overflow-x-hidden max-h-full self-center flex">
+        <img
+          alt={painting.title}
+          className=" overflow-hidden self-center max-h-full w-auto justify-self-center"
+          src={painting.imageUrl}
+        />
+      </div>
       <div className="p-5 bg-slate-200">
         <h3 className="text-lg">{painting.title}</h3>
         <p className="my-4 text-sm text-gray-500">{painting.description}</p>
         <SimpletLink
-          path={`updatePainting/${painting._id}`}
+          path={`/updatePainting/${painting._id}`}
           text="Actualizar"
         />
         <SimpleButton
           color="bg-orange-400 text-white"
           text="Borrar"
-          buttonAction={() => {
-            console.log("delete working");
-            request(apiUrl, deletePaintingMutation, {
+          buttonAction={async () => {
+            await request(apiUrl, deletePaintingMutation, {
               input: { imageUrl: painting.imageUrl, _id: painting._id },
             });
+            dispatch(getPaintingsThunk());
           }}
         />
       </div>

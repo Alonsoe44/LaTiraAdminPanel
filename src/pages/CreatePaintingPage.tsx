@@ -3,8 +3,11 @@ import CreateForm from "../components/forms/CreateForm";
 function CreatePaintingPage() {
   return (
     <>
-      <h1>Sube una nueva pintura</h1>
-      <CreateForm />
+      <div className="h-10 block" />
+      <div className="flex flex-col w-screen items-center">
+        <h1 className="text-3xl my-10">Sube una nueva pintura</h1>
+        <CreateForm />
+      </div>
     </>
   );
 }
