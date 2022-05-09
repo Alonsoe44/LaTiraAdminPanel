@@ -15,6 +15,7 @@ const queryGetPainting = gql`
     }
   }
 `;
+
 const sillyPainting: PaintingInterface = {
   author: "Normal person",
   description: "Normal description",
@@ -22,6 +23,7 @@ const sillyPainting: PaintingInterface = {
   imageUrl: "None",
   _id: "1",
 };
+
 function UpdatePaintingPage() {
   const params = useParams();
   const [editedPainting, setEditedPainting] = useState(sillyPainting);
@@ -33,8 +35,11 @@ function UpdatePaintingPage() {
   }, []);
   return (
     <>
-      <h1>Actualiza la pintura </h1>
-      <UpdateForm painting={editedPainting} />
+      <div className="h-10 block" />
+      <div className="flex flex-col w-screen items-center">
+        <h1 className="text-3xl">Actualizar la informacion de la pintura</h1>
+        <UpdateForm painting={editedPainting} />
+      </div>
     </>
   );
 }

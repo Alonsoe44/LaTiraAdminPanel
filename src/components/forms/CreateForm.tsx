@@ -1,69 +1,76 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useForm } from "react-hook-form";
-import { gql, request } from "graphql-request";
-
-const createPaintingMutation = gql`
-  mutation NewPainting($input: NewPaintingInput) {
-    newPainting(input: $input) {
-      message
-    }
-  }
-`;
+import { Waveform } from "@uiball/loaders";
+import { useAppDispatch, useAppSelector } from "../../reduxToolkit/hooks";
+import PaintingsStateInterface from "../../interfaces/PaintingsStateInterface";
+import { createPaintingThunk } from "../../reduxToolkit/paintingsThunks";
 
 function CreateForm() {
   const { register, handleSubmit } = useForm();
+  const paintingsState = useAppSelector(
+    (state) => state.paintings
+  ) as PaintingsStateInterface;
+  const dispatch = useAppDispatch();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const submitData = { ...data, imageFile: data.imageFile[0] };
-    request("http://localhost:4000/graphql", createPaintingMutation, {
-      input: submitData,
-    }).then((apiResponse) => {
-      console.log(apiResponse);
-    });
+    dispatch(createPaintingThunk(submitData));
   };
 
   return (
     <div className="flex items-center justify-center w-screen">
-      <form
-        className="flex-row w-1/3 bg-white shadow-md p-10  rounded-md"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <label htmlFor="description" className="block">
-          Description
-          <input
-            id="description"
-            className="bg-black-100 border-2 block"
-            {...register("description")}
-          />
-        </label>
+      {paintingsState.isLoading ? (
+        <Waveform />
+      ) : (
+        <form
+          className="flex-row w-1/3 bg-white shadow-md p-10  rounded-md"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <label htmlFor="title" className="block my-5">
+            Titulo
+            <input
+              id="title"
+              type="text"
+              className="bg-black-100 border-2 block"
+              {...register("title")}
+            />
+          </label>
 
-        <label htmlFor="title">
-          Title
-          <input
-            id="title"
-            type="text"
-            className="bg-black-100 border-2 block"
-            {...register("title")}
-          />
-        </label>
+          <label htmlFor="description" className="block my-5">
+            Descripcion
+            <input
+              id="description"
+              className="bg-black-100 border-2 block"
+              {...register("description")}
+            />
+          </label>
 
-        <label htmlFor="author">
-          Author
-          <input
-            id="author"
-            className="bg-black-100 border-2 block"
-            {...register("author")}
-          />
-        </label>
+          <label htmlFor="author" className="block my-5">
+            Autor
+            <input
+              id="author"
+              className="bg-black-100 border-2 block"
+              {...register("author")}
+            />
+          </label>
 
-        <label htmlFor="imageFile" className="block">
-          File
-          <input id="imageFile" type="file" {...register("imageFile")} />
-        </label>
-        <button type="submit" className="bg-red-200 rounded-md m-3 p-1 w-40">
-          Submit
-        </button>
-      </form>
+          <label htmlFor="imageFile" className="block my-5">
+            Imagen
+            <input
+              id="imageFile"
+              className="block mt-4"
+              type="file"
+              {...register("imageFile")}
+            />
+          </label>
+          <button
+            type="submit"
+            className="bg-blue-300 rounded-md m-3 p-1 w-40 block"
+          >
+            Subir
+          </button>
+        </form>
+      )}
     </div>
   );
 }
