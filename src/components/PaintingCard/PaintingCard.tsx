@@ -1,7 +1,7 @@
 import request, { gql } from "graphql-request";
 import PaintingInterface from "../../interfaces/PaintingInterface";
 import { useAppDispatch } from "../../reduxToolkit/hooks";
-import { getPaintingsThunk } from "../../reduxToolkit/paintingsThunks";
+import { getPaintingsThunk } from "../../reduxToolkit/paintings/paintingsThunks";
 import SimpleButton from "./SimpleButton";
 import SimpletLink from "./SimpletLink";
 
