@@ -2,8 +2,8 @@ import request, { gql } from "graphql-request";
 import PaintingInterface from "../../interfaces/PaintingInterface";
 import { useAppDispatch } from "../../reduxToolkit/hooks";
 import { getPaintingsThunk } from "../../reduxToolkit/paintings/paintingsThunks";
-import SimpleButton from "./SimpleButton";
-import SimpletLink from "./SimpletLink";
+import SimpleButton from "../SimpleButton";
+import SimpletLink from "../SimpletLink";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -33,10 +33,7 @@ function PaintingCard({ painting }: PaintingCardProps) {
       <div className="p-5 bg-slate-200">
         <h3 className="text-lg">{painting.title}</h3>
         <p className="my-4 text-sm text-gray-500">{painting.description}</p>
-        <SimpletLink
-          path={`/updatePainting/${painting._id}`}
-          text="Actualizar"
-        />
+        <SimpletLink path={`/updatePainting/${painting._id}`} text="Editar" />
         <SimpleButton
           color="bg-orange-400 text-white"
           text="Borrar"

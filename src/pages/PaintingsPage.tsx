@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import PaintingCard from "../components/PaintingCard/PaintingCard";
-import SimpletLink from "../components/PaintingCard/SimpletLink";
+import SimpletLink from "../components/SimpletLink";
 import PaintingsStateInterface from "../interfaces/PaintingsStateInterface";
 import { useAppDispatch, useAppSelector } from "../reduxToolkit/hooks";
 import { getPaintingsThunk } from "../reduxToolkit/paintings/paintingsThunks";

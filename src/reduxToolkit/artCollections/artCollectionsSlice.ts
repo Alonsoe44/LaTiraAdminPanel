@@ -48,4 +48,4 @@ const artCollectionsSlice = createSlice({
   },
 });
 
-export default artCollectionsSlice;
+export default (artCollectionsSlice as any).reducer;

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import PaintingInterface from "../../interfaces/PaintingInterface";
 
 const updatePaintingMutation = gql`
-  mutation updatePainting($input: NewPaintingInput) {
+  mutation updatePainting($input: PaintingInput) {
     updatePainting(input: $input) {
       message
     }

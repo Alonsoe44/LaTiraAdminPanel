@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import request, { gql } from "graphql-request";
+import ArtCollectionInterface from "../../interfaces/ArtCollectionInterface";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -9,9 +10,10 @@ const getArtCollectionsQuery = gql`
       title
       author
       smallDescription
+      description
       bannerImage
-      paintings
       _id
+      paintings
     }
   }
 `;
@@ -24,8 +26,8 @@ query getArtCollection($input: ArtCollectionInput){
 }`;
 
 const createArtCollectionMutation = gql`
-  mutation creatArtCollection($input: ArtcollectionInput) {
-    getArtCollection(input: $input) {
+  mutation createArtCollection($input: ArtCollectionInput) {
+    createArtCollection(input: $input) {
       message
     }
   }
@@ -35,6 +37,7 @@ export const getArtCollectionsThunk = createAsyncThunk(
   "ArtCollection/getArtCollections",
   async () => {
     const artCollections = await request(apiUrl, getArtCollectionsQuery);
+    console.log(artCollections.getArtCollection);
     return artCollections.getArtCollections;
   }
 );
@@ -51,7 +54,7 @@ export const getArtCollectionThunk = createAsyncThunk(
 
 export const createArtCollectionThunk = createAsyncThunk(
   "Artcollection/createArtCollection",
-  async (artCollectionData) => {
+  async (artCollectionData: ArtCollectionInterface) => {
     await request(apiUrl, createArtCollectionMutation, {
       input: artCollectionData,
     });
