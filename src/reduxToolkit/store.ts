@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import paintingReducer from "./paintingsSlice";
+import paintingReducer from "./paintings/paintingsSlice";
+import artCollectionsReducer from "./artCollections/artCollectionsSlice";
 
 const store = configureStore({
   reducer: {
     paintings: paintingReducer,
+    artCollections: artCollectionsReducer,
   },
 });
 

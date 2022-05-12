@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
-import PaintingsStateInterface from "../interfaces/PaintingsStateInterface";
+import PaintingsStateInterface from "../../interfaces/PaintingsStateInterface";
 import { createPaintingThunk, getPaintingsThunk } from "./paintingsThunks";
 
 const initialState: PaintingsStateInterface = {
@@ -12,7 +12,7 @@ const paintingsSlice = createSlice({
   name: "Paintings",
   initialState,
   reducers: {
-    updatePaintings(state, action) {
+    updatePaintings(_state, action) {
       return action.payload.paintings;
     },
   },

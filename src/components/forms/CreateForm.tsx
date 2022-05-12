@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Waveform } from "@uiball/loaders";
 import { useAppDispatch, useAppSelector } from "../../reduxToolkit/hooks";
 import PaintingsStateInterface from "../../interfaces/PaintingsStateInterface";
-import { createPaintingThunk } from "../../reduxToolkit/paintingsThunks";
+import { createPaintingThunk } from "../../reduxToolkit/paintings/paintingsThunks";
 
 function CreateForm() {
   const { register, handleSubmit } = useForm();
