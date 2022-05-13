@@ -35,7 +35,7 @@ function PaintingCard({ painting }: PaintingCardProps) {
         <p className="my-4 text-sm text-gray-500">{painting.description}</p>
         <SimpletLink path={`/updatePainting/${painting._id}`} text="Editar" />
         <SimpleButton
-          color="bg-orange-400 text-white"
+          color="bg-orange-400 text-white my-4"
           text="Borrar"
           buttonAction={async () => {
             await request(apiUrl, deletePaintingMutation, {

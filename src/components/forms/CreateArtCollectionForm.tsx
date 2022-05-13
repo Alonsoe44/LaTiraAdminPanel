@@ -2,6 +2,7 @@
 import { Waveform } from "@uiball/loaders";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import ArtCollectionStateInterface from "../../interfaces/ArtCollectionStateInterface";
 import PaintingsStateInterface from "../../interfaces/PaintingsStateInterface";
 import { createArtCollectionThunk } from "../../reduxToolkit/artCollections/artCollecionThunks";
@@ -10,6 +11,7 @@ import { getPaintingsThunk } from "../../reduxToolkit/paintings/paintingsThunks"
 import ImageTarget from "./ImageTarget";
 
 function CreateArtCollectionForm() {
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const dispatch = useAppDispatch();
   const [paintingsCollection, pushPaintingCollection] = useState([]);
@@ -31,8 +33,8 @@ function CreateArtCollectionForm() {
       paintings: paintingsCollection,
       bannerImage: bannerUrl,
     };
-    console.log(submitObject);
     dispatch(createArtCollectionThunk(submitObject));
+    setTimeout(() => navigate("/"), 50);
   };
 
   const formParts = {
@@ -81,7 +83,7 @@ function CreateArtCollectionForm() {
         <button
           type="button"
           onClick={() => setFormStep("partTwo")}
-          className="bg-blue-300 rounded m-3 p-1 w-20-md w-40 block"
+          className="bg-blue-300 rounded m-3 p-1 w-20-md w-40 block text-white hover:bg-blue-400"
         >
           Siguiente
         </button>
@@ -116,7 +118,7 @@ function CreateArtCollectionForm() {
         <button
           type="button"
           onClick={() => setFormStep("partThree")}
-          className="bg-blue-300 rounded-md m-3 p-1 w-40 block"
+          className="bg-blue-300 rounded-md m-3 p-1 w-40 block text-white hover:bg-blue-400"
         >
           Siguiente
         </button>
@@ -128,7 +130,10 @@ function CreateArtCollectionForm() {
           <>
             <h1 className="text-3xl">Terminamos</h1>
             <h1>Haz click en crear coleccion</h1>
-            <button className="bg-blue-300 rounded m-3 p-1 w-60" type="submit">
+            <button
+              className="bg-blue-300 rounded m-3 p-1 w-60 text-white"
+              type="submit"
+            >
               Crear coleccion
             </button>
           </>

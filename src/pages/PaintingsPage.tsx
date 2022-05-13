@@ -14,17 +14,21 @@ function PaintingsPage() {
     dispatch(getPaintingsThunk());
   }, []);
   return (
-    <div className="p-10">
-      <div className="bg-gray-200 p-7">
-        <h1 className="text-4xl my-9">Las pinturas</h1>
+    <>
+      <div className="flex flex-col items-center justify-center ">
+        <h1 className="sm:text-5xl text-3xl text-center font-medium my-10">
+          Todas las pinturas de la galeria
+        </h1>
         <SimpletLink path="/newPainting" text="Anadir pintura" />
       </div>
-      <div className="w-screen flex flex-wrap">
-        {paintingsredux.paintings.map((painting) => (
-          <PaintingCard painting={painting} key={painting._id} />
-        ))}
+      <div className="sm:p-10">
+        <div className="flex flex-wrap justify-around">
+          {paintingsredux.paintings.map((painting) => (
+            <PaintingCard painting={painting} key={painting._id} />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

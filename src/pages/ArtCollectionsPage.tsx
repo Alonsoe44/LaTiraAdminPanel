@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Waveform } from "@uiball/loaders";
 import ArtCollectionStateInterface from "../interfaces/ArtCollectionStateInterface";
 import { useAppDispatch, useAppSelector } from "../reduxToolkit/hooks";
@@ -18,12 +18,16 @@ function ArtCollectionsPage() {
 
   return (
     <>
-      <div className="text-3xl font-medium">Colecciones de arte</div>
-      <SimpletLink
-        path="/createArtCollection"
-        text="Anadir coleccion de arte"
-      />
-      <div className="sm:p-10">
+      <div className="flex flex-col w-screen items-center">
+        <div className="sm:text-5xl text-3xl font-medium my-10">
+          Colecciones de arte
+        </div>
+        <SimpletLink
+          path="/createArtCollection"
+          text="Anadir coleccion de arte"
+        />
+      </div>
+      <div className="sm:p-10 flex flex-wrap">
         {stateArtCollections.isLoading ? (
           <Waveform />
         ) : (

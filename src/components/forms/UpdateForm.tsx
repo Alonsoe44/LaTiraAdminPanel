@@ -18,11 +18,13 @@ interface UpdateFormProps {
 }
 
 const apiUrl = import.meta.env.VITE_API_URL;
+
 function UpdateForm({ painting }: UpdateFormProps) {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
+    console.log(data);
     const submitData = {
       ...data,
       imageUrl: painting.imageUrl,
@@ -37,7 +39,7 @@ function UpdateForm({ painting }: UpdateFormProps) {
   };
 
   useEffect(() => {
-    reset();
+    setTimeout(() => reset(), 100);
   }, []);
   return (
     <div className="flex items-center justify-center w-screen">
