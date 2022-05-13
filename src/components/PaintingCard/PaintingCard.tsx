@@ -8,7 +8,7 @@ import SimpletLink from "../SimpletLink";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const deletePaintingMutation = gql`
-  mutation deletePainting($input: NewPaintingInput) {
+  mutation deletePainting($input: PaintingInput) {
     deletePainting(input: $input) {
       message
     }

@@ -5,7 +5,7 @@ import PaintingInterface from "../../interfaces/PaintingInterface";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const createPaintingMutation = gql`
-  mutation NewPainting($input: NewPaintingInput) {
+  mutation NewPainting($input: PaintingInput) {
     newPainting(input: $input) {
       message
     }
