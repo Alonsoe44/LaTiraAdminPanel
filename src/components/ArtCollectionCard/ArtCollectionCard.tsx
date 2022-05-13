@@ -7,7 +7,7 @@ interface ArtCollectionProp {
 }
 function ArtCollectionCard({ artCollection }: ArtCollectionProp) {
   return (
-    <div className="h-[22rem] p-10 border-black  bg-slate-50 flex shadow-md rounded-md justify-around lg:w-1/2">
+    <div className="h-[22rem] p-10 border-black  bg-slate-100 flex shadow-md rounded-md justify-around lg:w-[calc(50%-2rem)] m-4">
       <div className="w-[70%] flex flex-col justify-around">
         <h4 className="text-slate-500 text-sm">{artCollection.author}</h4>
         <h2 className="text-xl">{artCollection.title}</h2>

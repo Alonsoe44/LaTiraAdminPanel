@@ -37,7 +37,6 @@ export const getArtCollectionsThunk = createAsyncThunk(
   "ArtCollection/getArtCollections",
   async () => {
     const artCollections = await request(apiUrl, getArtCollectionsQuery);
-    console.log(artCollections.getArtCollection);
     return artCollections.getArtCollections;
   }
 );
