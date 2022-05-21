@@ -13,7 +13,6 @@ const getArtCollectionsQuery = gql`
       description
       bannerImage
       _id
-      paintings
     }
   }
 `;
